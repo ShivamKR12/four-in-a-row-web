@@ -36,7 +36,9 @@ COMPUTER = 'computer'
 
 class FourInARowGame:
     def __init__(self):
-        pygame.init()
+        pygame.mixer.pre_init(44100, -16, 2, 1024)
+    pygame.init()
+    pygame.mixer.set_num_channels(64)
         self.fps_clock = pygame.time.Clock()
 
         self.is_android = hasattr(sys, "getandroidapilevel")
@@ -129,7 +131,7 @@ class FourInARowGame:
             self.draw_board(board)
             self.display_surf.blit(winner_img, self.winner_rect)
             pygame.display.update()
-            self.fps_clock.tick(FPS)
+            self.fps_clock.tick()
             
             for event in pygame.event.get():
                 if event.type == QUIT or (event.type == KEYUP and event.key == K_ESCAPE):
@@ -235,7 +237,7 @@ class FourInARowGame:
                 self.display_surf.blit(self.arrow_img, self.arrow_rect)
 
             pygame.display.update()
-            self.fps_clock.tick(FPS)
+            self.fps_clock.tick()
 
             await asyncio.sleep(0)
 
@@ -253,7 +255,7 @@ class FourInARowGame:
                 return
             self.draw_board(board, {'x': x, 'y': y, 'color': color})
             pygame.display.update()
-            self.fps_clock.tick(FPS)
+            self.fps_clock.tick()
 
             await asyncio.sleep(0)
 
@@ -267,7 +269,7 @@ class FourInARowGame:
             speed += 0.5
             self.draw_board(board, {'x': x, 'y': y, 'color': BLACK})
             pygame.display.update()
-            self.fps_clock.tick(FPS)
+            self.fps_clock.tick()
             await asyncio.sleep(0)
 
         y = YMARGIN - SPACESIZE
@@ -277,7 +279,7 @@ class FourInARowGame:
             speed += 0.5
             self.draw_board(board, {'x': x, 'y': y, 'color': BLACK})
             pygame.display.update()
-            self.fps_clock.tick(FPS)
+            self.fps_clock.tick()
             await asyncio.sleep(0)
 
         await self.animate_dropping_token(board, column, BLACK)
