@@ -5,7 +5,11 @@
 # /// 
 
 import random, copy, sys, pygame, asyncio
-from pygame.locals import *
+QUIT = pygame.QUIT
+MOUSEBUTTONUP = pygame.MOUSEBUTTONUP
+MOUSEMOTION = pygame.MOUSEMOTION
+KEYUP = pygame.KEYUP
+K_ESCAPE = pygame.K_ESCAPE
 
 BOARDWIDTH = 7  # how many spaces wide the board is
 BOARDHEIGHT = 6 # how many spaces tall the board is
